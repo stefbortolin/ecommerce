@@ -35,7 +35,7 @@ export default function EliminarProducto() {
     
 
     const loadProducts = async () => { 
-        const response = await fetch(`http://localhost:5000/products`)
+        const response = await fetch(`http://localhost:5000/products/all`)
         const data = await response.json()
         console.log(data.data)
         setProducts(data.data)
@@ -101,7 +101,7 @@ const columns = [
     return (
     <div className={classes.paper}>
       <Typography component="h1" variant="h2">
-        Eliminar Producto
+        Products
       </Typography>
       <Link to="/agregarproducto">
         <div className={classes.button}>

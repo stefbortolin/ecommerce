@@ -9,6 +9,7 @@ import {ShoppingCart} from '@material-ui/icons';
 import { Badge } from '@mui/material';
 import { Link } from 'react-router-dom'
 import { useStateValue } from '../StateProvider'
+import { getTotalLenght } from '../reducer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +73,7 @@ export default function NavBar() {
             </Link>
             <Link to="/checkout-page">
               <IconButton aria-label="show cart items" className={classes.button}>
-                  <Badge badgeContent={cart?.length} >
+                  <Badge badgeContent={getTotalLenght(cart)} >
                       <ShoppingCart fontSize="large" />
                   </Badge>
               </IconButton>
@@ -109,7 +110,7 @@ export default function NavBar() {
             </Button>
           <Link to="/checkout-page">
             <IconButton aria-label="show cart items" className={classes.button}>
-                <Badge badgeContent={cart?.length} >
+                <Badge badgeContent={getTotalLenght(cart)} >
                     <ShoppingCart fontSize="large"  />
                 </Badge>
             </IconButton>

@@ -50,6 +50,15 @@ export default function CheckoutCard({product:{id,name,productType,image,price,r
   return (
     <Card className={classes.root}>
       <CardHeader
+        action={
+          <Typography
+            className={classes.action}
+            variant='h5'
+            color='textSecondary'
+            >
+              {quantity}
+          </Typography>
+        }
         title={name}
         subheader={`$${price}`}
       />

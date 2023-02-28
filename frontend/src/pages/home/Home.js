@@ -71,7 +71,7 @@ export default function Home (){
     }
     loadCategories()
     
-    },[page])
+    },[page, cat])
 
     const handleNextPage = () => setPage ( page => page + 1)
     const handlePrevPage = () => setPage ( page => page - 1)

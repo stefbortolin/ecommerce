@@ -10,9 +10,8 @@ export const actionsTypes = {
 }
 
 export const getTotalLenght = (cart) => {
-    let acc = 0
     return( 
-        cart?.reduce((acc,item) => item.quantity+ acc, acc))
+        cart?.reduce((acc,item) => item.quantity+ acc, 0))
 }
 
 export const getTotalCart = (cart) => {
@@ -21,13 +20,14 @@ export const getTotalCart = (cart) => {
     )
 }
 
+
 const reducer = (state,action) => {
     switch(action.type){
         case "ADD_TO_CART":
             let item = state.cart.find(cartItem => cartItem.id === action.item.id)
             if (item) {
                 item.quantity += 1
-                return state
+                return {...state}
             }
             else {
                 let quantity = 1

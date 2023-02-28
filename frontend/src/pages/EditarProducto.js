@@ -196,7 +196,7 @@ export default function EditarProducto() {
             </MenuItem>
           ))}
           </TextField>
-          <TextField className={classes.select}
+          {/* <TextField className={classes.select}
             id="outlined-select-currency"
             select
             autoWidth
@@ -210,7 +210,7 @@ export default function EditarProducto() {
                 {option.username}
               </MenuItem>
           ))}
-          </TextField>
+          </TextField> */}
           <Button
             type="submit"
             fullWidth

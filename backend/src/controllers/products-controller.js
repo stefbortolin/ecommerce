@@ -99,17 +99,20 @@ export const getProductCat = async (req,res,next) =>{
     const {cat} = req.params
     console.log(cat)
     const {offset = "0"} = req.query
+    
     try {
-        const result = await prisma.category.findFirst({
+        const result = await prisma.product.findMany({
             where: {
-                name: cat
+                category: {
+                    name: cat
+                }
             },
-            include: {products: true},
             skip: parseInt(offset),
-            take: 1,
+            take: 5,
             
         })
-        res.json({data:result.products})
+        console.log(result)
+        res.json({data:result})
     } catch (error) {
         next(error)
     }
