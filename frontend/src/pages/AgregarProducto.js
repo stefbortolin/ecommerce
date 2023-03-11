@@ -41,6 +41,7 @@ export default function AgregarProducto() {
   const descriptionRef = useRef(null)
   const catidRef = useRef(null)
   const useridRef = useRef(null)
+  const stockRef = useRef(null)
 
   const [users, setUsers] = useState([])
   const [categories,setCategories] = useState([])
@@ -54,7 +55,7 @@ export default function AgregarProducto() {
     const image = imageRef.current.value
     const description = descriptionRef.current.value
     const catid = catidRef.current.value
-    const userid = useridRef.current.value
+    const stock = parseInt(stockRef.current.value)
 
     console.log(name)
 
@@ -65,10 +66,10 @@ export default function AgregarProducto() {
       image,
       description,
       catid,
-      userid
+      stock
     })
     const token = JSON.parse(localStorage.getItem('loggedEcommerceUser')).token
- 
+    
     console.log(token)
     const result = await fetch("http://localhost:5000/products",{
       method: 'POST',
@@ -87,15 +88,9 @@ export default function AgregarProducto() {
     const data = await response.json()
     setCategories(data.data)
 }
-  const loadUsers = async () => {
-    const response = await fetch('http://localhost:5000/user')
-    const data = await response.json()
-    console.log(data)
-    setUsers(data.data)
-  }
+
   useEffect(() => {
     loadCategories()
-    loadUsers()
   },[])
 
 
@@ -177,6 +172,17 @@ export default function AgregarProducto() {
             </MenuItem>
           ))}
           </TextField>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="stock"
+            label="Stock"
+            name="stock"
+            autoFocus
+            inputRef={stockRef}
+          />
           
           <Button
             type="submit"

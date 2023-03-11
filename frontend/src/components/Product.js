@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { AddShoppingCart } from '@material-ui/icons';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { actionsTypes } from '../reducer';
 import { useStateValue } from '../StateProvider'
 
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Product({product:{id,name,productType,image,price,rating,description}}) {
+export default function Product({product:{id,name,productType,image,price,rating,description,stock}}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [{cart}, dispatch] = useStateValue()
@@ -76,9 +77,14 @@ export default function Product({product:{id,name,productType,image,price,rating
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Add to cart" onClick={() => addToCart() }>
-          <AddShoppingCart fontSize="medium" />
-        </IconButton>
+        {
+            stock>0 
+            && 
+            <IconButton aria-label="Add to cart" onClick={() => addToCart() }><AddShoppingCart fontSize="medium" /></IconButton> 
+            ||
+            <IconButton aria-label="No stock" ><DoDisturbIcon fontSize="medium" /></IconButton>
+        }
+          
         {Array(rating)
           .fill()
           .map((_, i) => (
